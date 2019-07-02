@@ -1,0 +1,125 @@
+<html>
+<body>
+<script>
+    
+var tigger = { character: "Tigger", 
+               greet: function(){
+                   console.log("Tigger says hi!");
+               }
+        };
+var pooh = {character: "Pooh",
+            greet: function(){
+                console.log("Pooh got that honey");
+            }
+        }; 
+var piglet = {character: "Piglet",
+            greet: function(){
+                console.log("Oink Oink");
+            }
+            };
+var bees = {character: "Bees",
+            greet: function(){
+                console.log("Buzz Buzz")
+            }
+        };
+var chrisRobin = {character: "Christopher Robin",
+            greet: function(){
+                console.log("Nice to meet ya friend!")
+            }
+        };
+var owl = {character:"Owl",
+            greet: function(){
+                console.log("Hoot Hoot")
+            }
+        };
+var rabbit = {character: "Rabbit",
+            greet: function(){
+                console.log("What's Up Doc?")
+            }
+        };
+var gopher = {character: "Gopher",
+            greet: function(){
+                console.log("Dig Dig Diggitty")
+            }
+        };
+var kanga = {character: "Kanga",
+            greet: function(){
+                console.log("I love to jump.")
+            }
+        };
+var eeyore = {character: "Eeyore",
+            greet: function(){
+                console.log("Oh bother")
+            }
+        };
+var heffalumps = {character: "Heffalumps",
+            greet: function(){
+                console.log("Lumps Lumps")
+            }
+        };
+
+//tigger
+tigger.north = pooh;
+
+//pooh
+pooh.south = tigger;
+pooh.west = piglet;
+pooh.east = bees;
+
+//piglet
+piglet.north = owl;
+tigger.east = pooh;
+
+//bees
+bees.west = pooh;
+bees.north = rabbit;
+
+//owl
+owl.south = piglet;
+owl.east = chrisRobin;
+
+//chris robin
+chrisRobin.south = pooh;
+chrisRobin.east = rabbit;
+chrisRobin.north = kanga;
+chrisRobin.west = owl;
+
+//rabbit 
+rabbit.south = bees;
+rabbit.west = chrisRobin;
+rabbit.east = gopher;
+
+//gopher
+gopher.west = rabbit;
+
+//kanga
+kanga.north = eeyore;
+kanga.south = chrisRobin;
+
+//eeyore
+eeyore.south = kanga;
+eeyore.east = heffalumps;
+
+//heffalumps
+heffalumps.west = eeyore;
+
+//player
+var player = {
+    location: tigger
+}
+
+function move(x){
+    if (player.location[x] == undefined){
+        console.log("Cannot go there!");
+    }
+    else{
+        player.location = player.location[x];
+        console.log('You are at ' + player.location.character + "'s house");
+        player.location.greet();
+    }  
+}
+</script>
+    
+</body>
+
+</html>
