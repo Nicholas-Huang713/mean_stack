@@ -9,7 +9,7 @@ var tigger = { character: "Tigger",
         };
 var pooh = {character: "Pooh",
             greet: function(){
-                console.log("Pooh got that honey");
+                console.log("We'll be friends forever!");
             }
         }; 
 var piglet = {character: "Piglet",
@@ -62,6 +62,7 @@ var heffalumps = {character: "Heffalumps",
 tigger.north = pooh;
 
 //pooh
+pooh.north = chrisRobin;
 pooh.south = tigger;
 pooh.west = piglet;
 pooh.east = bees;
@@ -105,19 +106,57 @@ heffalumps.west = eeyore;
 
 //player
 var player = {
-    location: tigger
+    location: tigger,
+    has_honey: false
+}
+
+function pickup(){
+    if (player.location == bees){
+        player.has_honey = true;
+        console.log("Got that honey!");
+    }
+    else{
+        console.log("No honey here...");
+    }
+}
+
+function drop(){
+    if (player.has_honey == false){
+        console.log("You don't have the honey...");
+    }
+    if(player.location.recipient !== true){
+        console.log("Can't drop honey here...");
+    }
+    else{
+        player.has_honey = false;
+        console.log("Honey successfully dropped off!!");
+    }
+   
 }
 
 function move(x){
     if (player.location[x] == undefined){
         console.log("Cannot go there!");
-    }
+    }   
     else{
         player.location = player.location[x];
         console.log('You are at ' + player.location.character + "'s house");
         player.location.greet();
     }  
 }
+
+function mission(){
+    if (player.has_honey == false){
+        console.log("Find the honey and deliver it to the right home!")
+    }
+    var character = [tigger,piglet,pooh,owl,chrisRobin,rabbit,gopher,kanga,eeyore,heffalumps];
+    var i = Math.floor(Math.random() * 10);
+    objective = character[i];
+    objective.recipient = true;
+    console.log("Drop off honey for " + objective.character);
+    return objective;
+}
+mission();
 </script>
     
 </body>
